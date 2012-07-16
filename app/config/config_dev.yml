@@ -22,5 +22,11 @@ monolog:
 assetic:
     use_controller: true
 
+jms_debugging:
+    auto_help: false
+
+nelmio_api_doc:
+    name:   Documentation API (v1)
+    
 #swiftmailer:
 #    delivery_address: me@example.com
