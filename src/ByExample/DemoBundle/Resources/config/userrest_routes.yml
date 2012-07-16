@@ -1,0 +1,8 @@
+byexample_demo_userrest:
+    resource: ByExample\DemoBundle\Controller\UserRestController
+    type: rest
+
+byexample_demo_userrolrest:
+    resource: ByExample\DemoBundle\Controller\UserRoleRestController
+    type: rest
+    parent: byexample_demo_userrest

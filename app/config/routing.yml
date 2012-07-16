@@ -26,6 +26,11 @@ NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /
 
-bdk_core_user_securityrest:
+byexample_demo_securityrest:
     resource: ByExample\DemoBundle\Controller\SecurityController
     type: rest
+
+byexample_demo_userrest:
+    resource: "@ByExampleDemoBundle/Resources/config/userrest_routes.yml"
+    type: rest
+    prefix: /api
