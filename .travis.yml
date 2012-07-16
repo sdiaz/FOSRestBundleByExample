@@ -10,7 +10,7 @@ before_script:
   - COMPOSER_ROOT_VERSION=dev-master php composer.phar --dev install
   - src/ByExample/DemoBundle/Resources/bin/validate.sh
 
-script: phpunit
+script: phpunit -c app/
 
 notifications:
   email: "sdiaz@symfony.tv"
