@@ -102,14 +102,16 @@
     </target>
 
     <target name="updatedeps" description="Update dependencies">
-        <exec executable="curl -s http://getcomposer.org/installer | php; php composer.phar update --prefer-source" failonerror="true">
-            <arg value="" />
+        <exec executable="bash" failonerror="true">
+            <arg value="-c" />
+            <arg value="curl -s http://getcomposer.org/installer | php composer.phar update --prefer-source" />
         </exec>
     </target>
 
     <target name="installdeps" description="Install dependencies">
-        <exec executable="curl -s http://getcomposer.org/installer | php composer.phar install --prefer-source" failonerror="true">
-            <arg value="" />
+        <exec executable="bash" failonerror="true">
+            <arg value="-c" />
+            <arg value="curl -s http://getcomposer.org/installer | php composer.phar install --prefer-source" />
         </exec>
     </target>
 
