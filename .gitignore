@@ -1,12 +1,24 @@
-# Bootstrap
-app/bootstrap*
+# Symfony Rules
+app/bootstrap.php.cache
+app/cache/*
+app/logs/*
+web/bundles/
+vendor
+composer.phar
 
-# Symfony directories
-vendor/*
-*/logs/*
-*/cache/*
-web/uploads/*
-web/bundles/*
+# Testing QA
+build/*
+.sonar/*
 
-# Configuration files
-app/config/parameters.ini
+# MacOSX
+.DS_Store
+*~
+
+# Netbeans
+nbproject/*
+
+# Eclipse
+.project
+.buildpath
+.settings/*
+/web/info.php
