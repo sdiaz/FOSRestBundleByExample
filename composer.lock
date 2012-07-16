@@ -1,5 +1,5 @@
 {
-    "hash": "34e2f5dfa6862e5c44329fa32559facd",
+    "hash": "0840b5716d3b70262ef735232c70edc2",
     "packages": [
         {
             "package": "doctrine/common",
@@ -52,12 +52,6 @@
             "version": "dev-master",
             "source-reference": "5ea703f5a3f5c7110cadeccb91b212c0eb7ea2d0",
             "commit-date": "1339701893"
-        },
-        {
-            "package": "friendsofsymfony/rest-bundle",
-            "version": "dev-master",
-            "alias-pretty-version": "0.8.x-dev",
-            "alias-version": "0.8.9999999.9999999-dev"
         },
         {
             "package": "friendsofsymfony/rest-bundle",
@@ -132,6 +126,12 @@
             "commit-date": "1339515714"
         },
         {
+            "package": "kriswallsmith/buzz",
+            "version": "dev-master",
+            "source-reference": "2ba5da13b1b03590f0164b3fb61578078d671fcc",
+            "commit-date": "1341070218"
+        },
+        {
             "package": "monolog/monolog",
             "version": "1.1.0"
         },
@@ -144,14 +144,14 @@
         {
             "package": "nelmio/api-doc-bundle",
             "version": "dev-master",
-            "alias-pretty-version": "2.0.x-dev",
-            "alias-version": "2.0.9999999.9999999-dev"
-        },
-        {
-            "package": "nelmio/api-doc-bundle",
-            "version": "dev-master",
             "source-reference": "f8ab93a1679dce2320836c60da032ae89533129f",
             "commit-date": "1342267932"
+        },
+        {
+            "package": "sensio/buzz-bundle",
+            "version": "dev-master",
+            "source-reference": "0754d7dd155efc4f85de60993571b0b6a5aaccb9",
+            "commit-date": "1338188924"
         },
         {
             "package": "sensio/distribution-bundle",
@@ -170,12 +170,6 @@
             "version": "dev-master",
             "source-reference": "e9ac8f1a911ed29e30296c7f1549f53d4c94eddf",
             "commit-date": "1342084432"
-        },
-        {
-            "package": "sensio/generator-bundle",
-            "version": "dev-master",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "sensio/generator-bundle",
@@ -204,32 +198,14 @@
         {
             "package": "symfony/assetic-bundle",
             "version": "dev-master",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
-        },
-        {
-            "package": "symfony/assetic-bundle",
-            "version": "dev-master",
             "source-reference": "ed933dcfa45f00b6bc6d7727007403f3ff429e5a",
             "commit-date": "1342126277"
         },
         {
             "package": "symfony/monolog-bundle",
             "version": "dev-master",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
-        },
-        {
-            "package": "symfony/monolog-bundle",
-            "version": "dev-master",
             "source-reference": "v2.1.0-BETA3",
             "commit-date": "1341078487"
-        },
-        {
-            "package": "symfony/swiftmailer-bundle",
-            "version": "dev-master",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "symfony/swiftmailer-bundle",
@@ -289,6 +265,7 @@
         "friendsofsymfony/user-bundle": 20,
         "friendsofsymfony/rest-bundle": 20,
         "nelmio/api-doc-bundle": 20,
+        "sensio/buzz-bundle": 20,
         "mopa/wsse-authentication-bundle": 20
     }
 }
