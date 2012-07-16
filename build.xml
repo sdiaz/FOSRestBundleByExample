@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="FOSRestBundleByExample" default="build" basedir=".">
+    <property name="source" value="src"/>
+    <property name="ignore" value="build"/>
+    <property name="sonar-version" value="0.1-SNAPSHOT"/>
+
+    <target name="clean" description="Clean up and create artifact directories">
+        <delete dir="${basedir}/build/api"/>
+        <delete dir="${basedir}/build/code-browser"/>
+        <delete dir="${basedir}/build/coverage"/>
+        <delete dir="${basedir}/build/logs"/>
+        <delete dir="${basedir}/build/pdepend"/>
+
+        <mkdir dir="${basedir}/build/api"/>
+        <mkdir dir="${basedir}/build/code-browser"/>
+        <mkdir dir="${basedir}/build/coverage"/>
+        <mkdir dir="${basedir}/build/logs"/>
+        <mkdir dir="${basedir}/build/pdepend"/>
+    </target>
+
+    <target name="phpunit" description="Run unit tests using PHPUnit and generates junit.xml and clover.xml" depends="validate">
+        <exec executable="phpunit" failonerror="true">
+            <arg line="-c app --coverage-html ${basedir}/build/coverage --coverage-clover ${basedir}/build/logs/clover.xml --testdox-html ${basedir}/build/test_results.html --log-junit ${basedir}/build/logs/junit.xml"/>
+        </exec>
+    </target>
+
+    <target name="parallelTasks" description="Run the pdepend, phpmd, phpcpd, phpcs, phpdoc and phploc tasks in parallel using a maximum of 2 threads.">
+        <parallel threadCount="2">
+            <sequential>
+                <antcall target="pdepend"/>
+                <antcall target="phpmd"/>
+            </sequential>
+            <antcall target="phpcpd"/>
+            <antcall target="phpcs"/>
+            <antcall target="phpdoc"/>
+            <antcall target="phploc"/>
+        </parallel>
+    </target>
+
+    <target name="pdepend" description="Generate jdepend.xml and software metrics charts using PHP_Depend">
+        <exec executable="pdepend">
+            <arg line="--jdepend-xml=${basedir}/build/logs/jdepend.xml
+                 --jdepend-chart=${basedir}/build/pdepend/dependencies.svg
+                 --overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg
+                 --exclude=${ignore}
+                 ${source}" />
+        </exec>
+    </target>
+
+    <target name="phpmd" description="Generate pmd.xml using PHPMD">
+        <exec executable="phpmd">
+            <arg line="${source}
+                 xml
+                 app/phpmd.xml
+                 --ignore=${ignore}
+                 --reportfile ${basedir}/build/logs/pmd.xml" />
+        </exec>
+    </target>
+
+    <target name="phpcpd" description="Generate pmd-cpd.xml using PHPCPD">
+        <exec executable="phpcpd">
+            <arg line="--log-pmd ${basedir}/build/logs/pmd-cpd.xml
+                 --exclude ${ignore}
+                 ${source}" />
+        </exec>
+    </target>
+
+    <target name="phploc" description="Generate phploc.csv">
+        <exec executable="phploc">
+            <arg line="--log-csv ${basedir}/build/logs/phploc.csv
+                 --exclude ${ignore}
+                 --suffixes php
+                 ${source}" />
+        </exec>
+    </target>
+
+    <target name="phpcs" description="Generate checkstyle.xml using PHP_CodeSniffer">
+        <exec executable="phpcs" output="/dev/null">
+            <arg line="--report=checkstyle
+                 --report-file=${basedir}/build/logs/checkstyle.xml
+                 --standard=Symfony2
+                 --extensions=php
+                 ${source}" />
+        </exec>
+    </target>
+
+    <target name="phpdoc" description="Generate API documentation using PHPDocumentor">
+        <exec executable="phpdoc">
+            <arg line="-d ${source} -t ${basedir}/build/api -i ${ignore}" />
+        </exec>
+    </target>
+
+    <target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser">
+        <exec executable="phpcb">
+            <arg line="--log=${basedir}/build/logs
+                 --source=${source}
+                 --output=${basedir}/build/code-browser
+                 --ignore=${ignore}
+                 " />
+        </exec>
+    </target>
+
+    <target name="updatedeps" description="Update dependencies">
+        <exec executable="curl -s http://getcomposer.org/installer | php; php composer.phar update --prefer-source" failonerror="true">
+            <arg value="" />
+        </exec>
+    </target>
+
+    <target name="installdeps" description="Install dependencies">
+        <exec executable="curl -s http://getcomposer.org/installer | php composer.phar install --prefer-source" failonerror="true">
+            <arg value="" />
+        </exec>
+    </target>
+
+    <target name="validate" description="Validate Project">
+        <exec executable="src/ByExample/DemoBundle/Resources/bin/validate.sh" failonerror="true">
+            <arg value="" />
+        </exec>
+    </target>
+
+    <target name="sonar" description="Sonar artifacts for QA">
+        <property name="sonar.projectName" value="FOSRestBundleByExample" />
+        <property name="sonar.sources" value="src/" />
+        <property name="sonar.tests" value="src/*/*/Tests" />
+        <property name="sonar.projectKey" value="tv.symfony:child1" />
+        <property name="sonar.sourceEncoding" value="UTF-8" />
+        <property name="sonar.language" value="php" />
+
+        <sonar:sonar key="tv.symfony:child1" version="${sonar-version}" xmlns:sonar="antlib:org.sonar.ant"/>
+    </target>
+
+    <target name="build" depends="clean,validate,parallelTasks,phpunit,phpcb"
+        description="Automatic build. No dependencies updated."/>
+    <target name="nightly-build" depends="clean,updatedeps,validate,parallelTasks,phpunit,phpcb"
+        description="Automatic build. All dependencies updated."/>
+    <target name="hourly-build" depends="clean,installdeps,validate,parallelTasks,phpunit,phpcb"
+        description="Automatic build. All dependencies installed from composer.lock."/>
+</project>

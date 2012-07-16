@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<phpmd failonerror="off" failonruleviolation="off">
+  <ruleset>unusedcode</ruleset>
+  <ruleset>codesize</ruleset>
+  <ruleset>design</ruleset>
+  <ruleset>naming</ruleset>
+</phpmd>
