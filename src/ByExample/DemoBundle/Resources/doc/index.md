@@ -1,3 +1,3 @@
 # Documentation #
 
-[Installing ant dependencies](using_ant.md)
+[Installing ant dependencies](ant_deps.md)
