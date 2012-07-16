@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            new Sensio\Bundle\BuzzBundle\SensioBuzzBundle(),
             new Mopa\Bundle\WSSEAuthenticationBundle\MopaWSSEAuthenticationBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new ByExample\DemoBundle\ByExampleDemoBundle()

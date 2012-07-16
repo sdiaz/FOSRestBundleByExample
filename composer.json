@@ -29,6 +29,7 @@
         "friendsofsymfony/user-bundle": "dev-master",
         "friendsofsymfony/rest-bundle": "dev-master",
         "nelmio/api-doc-bundle": "dev-master",
+        "sensio/buzz-bundle": "dev-master",
         "mopa/wsse-authentication-bundle": "dev-master"
     },
     "scripts": {
