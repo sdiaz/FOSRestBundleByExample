@@ -16,7 +16,7 @@ Documentation
 The bulk of the documentation will be stored in the `Resources/doc/index.md`
 file in this bundle:
 
-[Read the Documentation for master](blob/master/app/Resources/doc/index.md)
+[Read the Documentation for master](blob/master/src/ByExample/DemoBundle/Resources/doc/index.md)
 
 License
 -------
