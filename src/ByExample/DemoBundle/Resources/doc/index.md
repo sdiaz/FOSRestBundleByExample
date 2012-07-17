@@ -23,9 +23,9 @@ Now you will able to list the resources at http://localhost/app_dev.php
 
 # Checking the Restful API #
 
-Nelmio API Doc provides you with a *sandbox* that you can use to check the controllers. We recommend you to use Chrome and the [Dev HTTP Client extension](https://chrome.google.com/webstore/detail/aejoelaoggembcahagimdiliamlcdmfm) instead as it let you manage different calls and bookmark them in the extension.
+Nelmio API Doc provides you with a *sandbox* that you can use to check the controllers. We recommend to use Chrome and the [Dev HTTP Client extension](https://chrome.google.com/webstore/detail/aejoelaoggembcahagimdiliamlcdmfm) instead, as it let you manage different calls and bookmark them in the extension.
 
-As an example, the following screenshot show the interface while doing the wsse login:
+As an example, the following screenshot show the interface while doing the WSSE login:
 
 ![](https://dl.dropbox.com/u/3972728/github/devhttpclient01.png)
 
@@ -39,7 +39,7 @@ As parameters the default ones we preconfigured in validate.sh script:
     _username : admin
     _password : admin
 
-Just copy the content of WSSE response to use later for authentication purposes.
+Just copy the content of WSSE response to use later for authentication purposes as showed:
 
 ![](https://dl.dropbox.com/u/3972728/github/devhttpclient02.png)
 
@@ -48,5 +48,8 @@ As headers you will need to use for rest calls (update the X-WSSE by the one you
     Authorization    : WSSE profile="UsernameToken"
     X-wsse           : UsernameToken Username="admin", PasswordDigest="uG4/uZRfXD424+Oi9Q67DH/rrzc=", Nonce="M2Y4ZDY1MWNkYWU5ODdmMw==", Created="2012-07-17T12:53:58+02:00"
     ACCEPT           : application/json
+
+
+# Useful docs #
 
 [Installing ant dependencies](ant_deps.md)
