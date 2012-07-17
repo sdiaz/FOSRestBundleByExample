@@ -51,11 +51,15 @@ class SecurityController extends Controller
      */
     public function postLoginAction()
     {
+
         $view = FOSView::create();
         $request = $this->getRequest();
 
         $username = $request->get('_username');
         $password = $request->get('_password');
+
+        //$csrfToken = $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate');
+        //$data = array('csrf_token' => $csrfToken,);
 
         $um = $this->get('fos_user.user_manager');
         $user = $um->findUserByUsernameOrEmail($username);
@@ -66,23 +70,24 @@ class SecurityController extends Controller
         if (!$this->checkUserPassword($user, $password)) {
             throw new AccessDeniedException("Wrong password");
         }
+
         $created = date('c');
         $nonce = substr(md5(uniqid('nonce_', true)), 0, 16);
-        $nonceSixtyFour = base64_encode($nonce);
-        $passwordDigest = base64_encode(sha1($nonce . $created . $password, true));
-        $token = "UsernameToken Username=\"{$username}\", PasswordDigest=\"{$passwordDigest}\", Nonce=\"{$nonceSixtyFour}\", Created=\"{$created}\"";
-        $header = array(
-            'HTTP_Authorization' => 'WSSE profile="UsernameToken"',
-            'HTTP_X-WSSE' => $token,
-            'HTTP_ACCEPT' => 'application/json'
-        );
+        $nonce64 = base64_encode($nonce);
+        $passwordDigest = base64_encode(sha1($nonce . $created . $user->getPassword(), true));
+        $header = "UsernameToken Username=\"{$username}\", PasswordDigest=\"{$passwordDigest}\", Nonce=\"{$nonce64}\", Created=\"{$created}\"";
         $this->loginUser($user);
-        $data = array('WSSE' => $token, 'ROLES' => $user->getRoles());
+
+        //AGREGAR HEADERS PARA WSSE
+        $view->setHeader("Authorization", 'WSSE profile="UsernameToken"');
+        $view->setHeader("X-WSSE", "UsernameToken Username=\"{$username}\", PasswordDigest=\"{$passwordDigest}\", Nonce=\"{$nonce64}\", Created=\"{$created}\"");
+
+        $data = array('WSSE' => $header);
         $view->setStatusCode(200)->setData($data);
         return $view;
     }
 
-    /**
+  /**
      * Devuelve un estado logout
      *
      * @return FOSView
@@ -129,5 +134,6 @@ class SecurityController extends Controller
         $encoder = $factory->getEncoder($user);
         return $encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt());
     }
+
 
 }

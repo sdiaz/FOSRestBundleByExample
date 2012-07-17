@@ -10,11 +10,6 @@ There is currently no release for Symfony 2.0.x
 
 [![Build Status](https://secure.travis-ci.org/sdiaz/FOSRestBundleByExample.png?branch=master)](http://travis-ci.org/sdiaz/FOSRestBundleByExample)
 
-Important
----------
-
-Since Symfony Beta3, the security component is not working well with wsse. You can login but the token is not properly verified at server side, so you will get a *401 WSSE authentication failed* each time you try to access a resource. You can just point to another path to secure in security.yml while fixing this.
-
 Documentation
 -------------
 

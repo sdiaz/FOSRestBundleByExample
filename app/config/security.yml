@@ -19,8 +19,8 @@ security:
             pattern:   ^/api/.*
             stateless:    true
             wsse:
-                nonce_dir: /tmp
-                lifetime: 6000
+                nonce_dir: null
+                lifetime: 300
                 provider: fos_userbundle
             anonymous:    true
 
