@@ -12,3 +12,12 @@ _configurator:
 
 _main:
     resource: routing.yml
+
+_assetic:
+    resource: .
+    type:     assetic
+
+# Not present in packagist
+#ProfilerLiveBundle:
+#    resource: "@ProfilerLiveBundle/Resources/config/routing.yml"
+#    prefix:   /

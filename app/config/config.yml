@@ -3,7 +3,6 @@ imports:
     - { resource: security.yml }
     - { resource: doctrine_extensions.yml }
 
-
 framework:
     #esi:             ~
     translator:      { fallback: %locale% }
@@ -77,24 +76,20 @@ swiftmailer:
     password:  %mailer_password%
     spool:     { type: memory }
 
-
 jms_security_extra:
     secure_all_services: false
     enable_iddqd_attribute: false
     expressions: true
 
-
 jms_serializer:
     handlers:
         object_based: true
-
 
 sensio_framework_extra:
     router:  { annotations: true }
     request: { converters: true }
     view:    { annotations: false }  # More info at https://github.com/FriendsOfSymfony/FOSRestBundle/issues/95
     cache:   { annotations: true }
-
 
 jms_aop:
     cache_dir: %kernel.cache_dir%/jms_aop
@@ -104,7 +99,6 @@ fos_user:
     db_driver: orm
     firewall_name: wsse_secured #fos_secured
     user_class: ByExample\DemoBundle\Entity\User
-
 
 fos_rest:
     view:
@@ -121,7 +115,6 @@ fos_rest:
         decoders:
             json: fos_rest.decoder.json
     param_fetcher_listener: true
-
 
 mopa_wsse_authentication:
     provider_class: Mopa\Bundle\WSSEAuthenticationBundle\Security\Authentication\Provider\WsseAuthenticationProvider

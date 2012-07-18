@@ -116,7 +116,7 @@
     </target>
 
     <target name="validate" description="Validate Project">
-        <exec executable="src/ByExample/DemoBundle/Resources/bin/validate.sh" failonerror="true">
+        <exec executable="app/Resources/bin/validate.sh" failonerror="true">
             <arg value="" />
         </exec>
     </target>

@@ -65,14 +65,14 @@ class SecurityController extends Controller
 
         $created = date('c');
         $nonce = substr(md5(uniqid('nonce_', true)), 0, 16);
-        $nonce64 = base64_encode($nonce);
+        $nonceHigh = base64_encode($nonce);
         $passwordDigest = base64_encode(sha1($nonce . $created . $user->getPassword(), true));
-        $header = "UsernameToken Username=\"{$username}\", PasswordDigest=\"{$passwordDigest}\", Nonce=\"{$nonce64}\", Created=\"{$created}\"";
+        $header = "UsernameToken Username=\"{$username}\", PasswordDigest=\"{$passwordDigest}\", Nonce=\"{$nonceHigh}\", Created=\"{$created}\"";
         $this->loginUser($user);
 
         //AGREGAR HEADERS PARA WSSE
         $view->setHeader("Authorization", 'WSSE profile="UsernameToken"');
-        $view->setHeader("X-WSSE", "UsernameToken Username=\"{$username}\", PasswordDigest=\"{$passwordDigest}\", Nonce=\"{$nonce64}\", Created=\"{$created}\"");
+        $view->setHeader("X-WSSE", "UsernameToken Username=\"{$username}\", PasswordDigest=\"{$passwordDigest}\", Nonce=\"{$nonceHigh}\", Created=\"{$created}\"");
 
         $data = array('WSSE' => $header);
         $view->setStatusCode(200)->setData($data);

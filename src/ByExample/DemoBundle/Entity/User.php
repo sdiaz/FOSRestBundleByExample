@@ -34,23 +34,12 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="ByExample\DemoBundle\Entity\Portal")
-     * @ORM\JoinTable(name="rel_fosuser_portal",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="portal_id", referencedColumnName="id", unique=true)}
-     * )
-     **/
-    protected $portal = null;
-
-
-    /**
      * Constructor
      */
     public function __construct()
     {
         parent::__construct();
         // your own logic
-        $this->portal = new ArrayCollection();
     }
 
     /**
@@ -61,28 +50,5 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Add portal
-     *
-     * @param ByExample\DemoBundle\Entity\Portal $portal Portal
-     *
-     * @return User
-     */
-    public function addPortal(\ByExample\DemoBundle\Entity\Portal $portal)
-    {
-        $this->portal[] = $portal;
-        return $this;
-    }
-
-    /**
-     * Get portal
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getPortal()
-    {
-        return $this->portal;
     }
 }

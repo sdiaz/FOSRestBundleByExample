@@ -13,10 +13,10 @@ There is currently no release for Symfony 2.0.x
 Documentation
 -------------
 
-The bulk of the documentation will be stored in the `Resources/doc/index.md`
+The bulk of the documentation will be stored in the `app/Resources/doc/index.md`
 file in this bundle:
 
-[Read the Documentation for master](FOSRestBundleByExample/blob/master/src/ByExample/DemoBundle/Resources/doc/index.md)
+[Read the Documentation for master](FOSRestBundleByExample/blob/master/app/Resources/doc/index.md)
 
 After installation you will find in http://localhost/app_dev.php the Nelmio Api Doc with the resources available.
 
@@ -27,4 +27,4 @@ License
 
 This bundle is under the MIT license. See the complete license in the bundle:
 
-    Resources/meta/LICENSE
+    app/Resources/meta/LICENSE
