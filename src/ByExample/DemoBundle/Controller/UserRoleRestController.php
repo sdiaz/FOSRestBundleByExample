@@ -12,34 +12,24 @@
 
 namespace ByExample\DemoBundle\Controller;
 
-use BDK\Core\UserBundle\Entity\User;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use FOS\RestBundle\Controller\Annotations\QueryParam,
-    FOS\RestBundle\Controller\Annotations\RequestParam,
-    FOS\RestBundle\Controller\Annotations\Prefix,
-    FOS\RestBundle\Controller\Annotations\NamePrefix,
-    FOS\RestBundle\Controller\Annotations\View,
-    FOS\RestBundle\Request\ParamFetcher,
-    FOS\RestBundle\View\RouteRedirectView,
-    FOS\RestBundle\View\View AS FOSView;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\HttpFoundation\Request,
-    Symfony\Component\Validator\ConstraintViolation;
+use FOS\RestBundle\Controller\Annotations\NamePrefix;
+use FOS\RestBundle\View\View AS FOSView;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
- * Controller that provides Restful sercies over the resource
- * Users Roles.
+ * Controller that provides Restful services over the resource Users Roles using user_manager container.
  *
  * @NamePrefix("byexample_demo_userrolrest_")
- * @author  Santiago Diaz <santiago.diaz@me.com>
- * @version Release: 0.1
+ * @author Santiago Diaz <santiago.diaz@me.com>
  */
 class UserRoleRestController extends Controller
 {
 
     /**
-     * Returns all roles
+     * Returns all roles for the specified user by slug.
      *
      * @param string $slug Username or Email
      *
@@ -63,16 +53,13 @@ class UserRoleRestController extends Controller
     }
 
     /**
-     * Create a new role
+     * Create a new role for the specified user by slug.
      *
      * @param string $slug Username or Email
      *
      * @return FOSView
-     * @ApiDoc(
-     * filters={
-     *      {"name"="rol", "dataType"="string"},
-     *  }
-     * )
+     * @Secure(roles="ROLE_USER")
+     * @ApiDoc()
      */
     public function postRolesAction($slug)
     {
@@ -93,13 +80,13 @@ class UserRoleRestController extends Controller
     }
 
     /**
-     * Delete the rol indicated.
+     * Delete the rol indicated by id for the specified user by slug.
      *
      * @param string $slug Username or Email
      * @param string $id   Role name
      *
      * @return FOSView
-     * @Secure(roles="ROLE_DEVELOPER")
+     * @Secure(roles="ROLE_USER")
      * @ApiDoc()
      */
     public function deleteRoleAction($slug, $id)

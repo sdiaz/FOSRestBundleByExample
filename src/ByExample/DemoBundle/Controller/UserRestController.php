@@ -14,7 +14,6 @@ namespace ByExample\DemoBundle\Controller;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;                  // @ApiDoc(resource=true, description="Filter",filters={{"name"="a-filter", "dataType"="string", "pattern"="(foo|bar) ASC|DESC"}})
 use FOS\RestBundle\Controller\Annotations\NamePrefix;       // NamePrefix Route annotation class @NamePrefix("bdk_core_user_userrest_")
-use FOS\RestBundle\Controller\Annotations\View;             // If used, the template variable name used to render templating formats can be configured (default 'data'):
 use FOS\RestBundle\View\RouteRedirectView;                  // Route based redirect implementation
 use FOS\RestBundle\View\View AS FOSView;                    // Default View implementation.
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
