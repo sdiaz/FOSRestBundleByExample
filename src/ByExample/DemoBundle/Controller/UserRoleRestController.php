@@ -29,7 +29,7 @@ class UserRoleRestController extends Controller
 {
 
     /**
-     * Returns all roles for the specified user by slug.
+     * Returns all roles for an user by username/email.
      *
      * @param string $slug Username or Email
      *
@@ -53,7 +53,7 @@ class UserRoleRestController extends Controller
     }
 
     /**
-     * Create a new role for the specified user by slug.
+     * Create a new role for an user by username/email.
      *
      * @param string $slug Username or Email
      *
@@ -80,7 +80,7 @@ class UserRoleRestController extends Controller
     }
 
     /**
-     * Delete the rol indicated by id for the specified user by slug.
+     * Delete the rol indicated for an user by username/email.
      *
      * @param string $slug Username or Email
      * @param string $id   Role name

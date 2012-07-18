@@ -31,7 +31,7 @@ class UserRestController extends Controller
 {
 
     /**
-     * Returns the user list.
+     * Returns the overall user list.
      *
      * @return FOSView
      * @Secure(roles="ROLE_USER")
@@ -49,7 +49,7 @@ class UserRestController extends Controller
     }
 
     /**
-     * Returns the user espcified by username or email.
+     * Returns an user by username/email.
      *
      * @param string $slug Username or Email
      *
@@ -73,7 +73,7 @@ class UserRestController extends Controller
     }
 
     /**
-     * Creates a new user.
+     * Creates a new user entry.
      *
      * @return FOSView
      * @Secure(roles="ROLE_USER")
@@ -104,7 +104,7 @@ class UserRestController extends Controller
     }
 
     /**
-     * Update an user especified by username or email.
+     * Update an user by username/email.
      *
      * @param string $slug Username or Email
      *
@@ -147,7 +147,7 @@ class UserRestController extends Controller
     }
 
     /**
-     * Delete the user specified by username or email.
+     * Delete an user by username/email.
      *
      * @param string $slug Username or Email
      *
