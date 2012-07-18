@@ -91,10 +91,10 @@ class SecurityControllerTest extends WebTestCase
      *
      * @return none
      */
-    public function testPostLoginAction_user_no_existente()
+    public function testPostLoginAction_invalid_user()
     {
         $client = static::createClient();
-        $params = array('_username' => 'usuarionoexiste', '_password' => 'admin');
+        $params = array('_username' => 'nonexistent', '_password' => 'admin');
         $header = array(
             'HTTP_ACCEPT' => 'application/json',
             'HTTP_Content-Type' => 'application/x-www-form-urlencoded',
@@ -110,10 +110,10 @@ class SecurityControllerTest extends WebTestCase
      *
      * @return none
      */
-    public function testPostLoginAction_password_no_valida()
+    public function testPostLoginAction_invalid_password()
     {
         $client = static::createClient();
-        $params = array('_username' => 'admin', '_password' => 'passworderronea');
+        $params = array('_username' => 'admin', '_password' => 'wrongpassword');
         $header = array(
             'HTTP_ACCEPT' => 'application/json',
             'HTTP_Content-Type' => 'application/x-www-form-urlencoded',
@@ -126,7 +126,7 @@ class SecurityControllerTest extends WebTestCase
     }
 
     /**
-     * Test logut
+     * Test logout
      *
      * @return none
      */

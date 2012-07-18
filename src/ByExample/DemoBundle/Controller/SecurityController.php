@@ -70,7 +70,6 @@ class SecurityController extends Controller
         $header = "UsernameToken Username=\"{$username}\", PasswordDigest=\"{$passwordDigest}\", Nonce=\"{$nonceHigh}\", Created=\"{$created}\"";
         $this->loginUser($user);
 
-        //AGREGAR HEADERS PARA WSSE
         $view->setHeader("Authorization", 'WSSE profile="UsernameToken"');
         $view->setHeader("X-WSSE", "UsernameToken Username=\"{$username}\", PasswordDigest=\"{$passwordDigest}\", Nonce=\"{$nonceHigh}\", Created=\"{$created}\"");
 

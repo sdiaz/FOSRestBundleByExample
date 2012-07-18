@@ -102,11 +102,11 @@ class UserRestControllerTest extends WebTestCase
     }
 
     /**
-     * Test get usero
+     * Test get user
      *
      * @return none
      */
-    public function testGetUserAction_usuario_especifico_existente()
+    public function testGetUserAction_valid_user()
     {
         $this->client->request('GET', '/api/users/usuario1', array(), array(), $this->header);
         $content = $this->client->getResponse()->getContent();
@@ -127,12 +127,12 @@ class UserRestControllerTest extends WebTestCase
      *
      * @return none
      */
-    public function testGetUserAction_slug_inexistente()
+    public function testGetUserAction_invalid_user()
     {
         $this->client->request('GET', '/api/users/user_no_existente');
 
-        // Assert a specific 204 status code
-        $this->assertEquals(204, $this->client->getResponse()->getStatusCode());
+        // Assert a specific 404 status code
+        $this->assertEquals(404, $this->client->getResponse()->getStatusCode());
     }
 
     /**
@@ -140,7 +140,7 @@ class UserRestControllerTest extends WebTestCase
      *
      * @return none
      */
-    public function testGetUserAction_obtener_usuarios_registrados()
+    public function testGetUserAction_get_registered_users()
     {
 
         $this->client->request('GET', '/api/users');
@@ -207,7 +207,7 @@ class UserRestControllerTest extends WebTestCase
      *
      * @return none
      */
-    public function testPostUsersAction_datos_invalidos()
+    public function testPostUsersAction_invalid_data()
     {
         $jsonParam = "username=u3&plainPassword=1&email=" . urlencode("usuario3_bd.com");
         //echo $jsonParam;
@@ -219,7 +219,6 @@ class UserRestControllerTest extends WebTestCase
         // Assert that the "Content-Type" header is "application/json"
         $this->assertTrue($this->client->getResponse()->headers->contains('Content-Type', 'application/json'));
 
-        //VERIFICAR SI LOS ERRORES SON LOS ESPERADOS
     }
 
     /**
@@ -243,7 +242,7 @@ class UserRestControllerTest extends WebTestCase
      *
      * @return none
      */
-    public function testDeleteUserAction_id_no_existe()
+    public function testDeleteUserAction_invalid_user()
     {
         $this->client->request('DELETE', '/api/users/usuario0');
 
@@ -260,7 +259,7 @@ class UserRestControllerTest extends WebTestCase
      * @return none
      * @expectedException Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
      */
-    public function testDeleteUserAction_sin_id()
+    public function testDeleteUserAction_without_slug()
     {
         $this->client->request('DELETE', '/api/users');
 
@@ -289,7 +288,7 @@ class UserRestControllerTest extends WebTestCase
      *
      * @return none
      */
-    public function testPutUserAction_id_no_existente()
+    public function testPutUserAction_invalid_slug()
     {
         $params = array('plainPassword' => '54321');
 
@@ -304,7 +303,7 @@ class UserRestControllerTest extends WebTestCase
      *
      * @return none
      */
-    public function testPutUserAction_pass_invalido()
+    public function testPutUserAction_invalid_password()
     {
         $params = array('plainPassword' => '5');
         //$headers = array('CONTENT_TYPE' => 'application/x-www-form-urlencoded');
@@ -319,7 +318,7 @@ class UserRestControllerTest extends WebTestCase
      *
      * @return none
      */
-    public function testPutUserAction_username_invalido()
+    public function testPutUserAction_invalid_username()
     {
         $params = array('username' => '5');
         //$headers = array('CONTENT_TYPE' => 'application/x-www-form-urlencoded');
@@ -334,7 +333,7 @@ class UserRestControllerTest extends WebTestCase
      *
      * @return none
      */
-    public function testPutUserAction_email_invalido()
+    public function testPutUserAction_invalid_email()
     {
         $params = array('email' => '5');
         //$headers = array('CONTENT_TYPE' => 'application/x-www-form-urlencoded');
@@ -343,13 +342,4 @@ class UserRestControllerTest extends WebTestCase
 
         $this->assertEquals(400, $this->client->getResponse()->getStatusCode());
     }
-
-//probar crear usuario nuevo
-//probar crear username repetido
-//probar crear usuario username vacio
-//probar crear usuario username corto (menos de 2 caracteres)
-//probar crear usuario sin email
-//probar crear usuario email invalido
-//probar crear usuario sin clave
-//probar crear usuario clave corta (menos de 2 caracteres)
 }

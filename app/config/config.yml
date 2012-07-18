@@ -1,7 +1,6 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: doctrine_extensions.yml }
 
 framework:
     #esi:             ~
@@ -94,7 +93,6 @@ sensio_framework_extra:
 jms_aop:
     cache_dir: %kernel.cache_dir%/jms_aop
 
-
 fos_user:
     db_driver: orm
     firewall_name: wsse_secured #fos_secured
@@ -120,3 +118,13 @@ mopa_wsse_authentication:
     provider_class: Mopa\Bundle\WSSEAuthenticationBundle\Security\Authentication\Provider\WsseAuthenticationProvider
     listener_class: Mopa\Bundle\WSSEAuthenticationBundle\Security\Firewall\WsseListener
     factory_class: Mopa\Bundle\WSSEAuthenticationBundle\Security\Factory\WsseFactory
+
+stof_doctrine_extensions:
+    default_locale: %locale%
+    orm:
+        default:
+            translatable: true
+            timestampable: true
+            sluggable: true
+            loggable: true
+            tree: true

@@ -66,7 +66,7 @@ class UserRestController extends Controller
         if ($user) {
             $view->setStatusCode(200)->setData($user);
         } else {
-            $view->setStatusCode(204);
+            $view->setStatusCode(404);
         }
 
         return $view;
@@ -184,7 +184,7 @@ class UserRestController extends Controller
         foreach ($it as $val) {
             $msg = $val->getMessage();
             $params = $val->getMessageParameters();
-            //usando dominio de traduccion 'validators' del FOSUserBundle
+            //using FOSUserBundle translator domain 'validators'
             $msgs[$val->getPropertyPath()][] = $this->get('translator')->trans($msg, $params, 'validators');
         }
         $view = FOSView::create($msgs);

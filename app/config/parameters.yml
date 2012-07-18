@@ -4,7 +4,7 @@ parameters:
     database_port:     ~
     database_name:     fosrestbyexample
     database_user:     root
-    database_password: ~
+    database_password: qa.Rot
 
     mailer_transport:  smtp
     mailer_host:       localhost

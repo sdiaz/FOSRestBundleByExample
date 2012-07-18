@@ -68,11 +68,11 @@ class UserRoleRestControllerTest extends WebTestCase
     }
 
     /**
-     * Test Obtener Roles de usuario Registrado
+     * Test get roles registered user
      *
      * @return none
      */
-    public function testGetRoleAction_obtener_roles()
+    public function testGetRoleAction_get_roles()
     {
         $this->client->request('GET', '/api/users/admin/roles');
         $content = $this->client->getResponse()->getContent();
@@ -89,11 +89,11 @@ class UserRoleRestControllerTest extends WebTestCase
     }
 
     /**
-     * Test Obtener Roles de usuario no existente
+     * Test get roles nonexistant user
      *
      * @return none
      */
-    public function testGetRoleAction_id_inexistente()
+    public function testGetRoleAction_nonexistant_user()
     {
         $this->client->request('GET', '/api/users/noexistenteuser/roles');
 
@@ -102,7 +102,7 @@ class UserRoleRestControllerTest extends WebTestCase
     }
 
     /**
-     * Test Creación de un nuevo Rol
+     * Test creation new role
      *
      * @return none
      */
@@ -119,11 +119,11 @@ class UserRoleRestControllerTest extends WebTestCase
     }
 
     /**
-     * Test Creación de un nuevo Rol con datos invalidos
+     * Test creation new role invalid data
      *
      * @return none
      */
-    public function testPostRolesAction_datos_invalidos()
+    public function testPostRolesAction_invalid_data()
     {
         // Assert a specific 400 due to no data
         $params = array();
@@ -144,11 +144,11 @@ class UserRoleRestControllerTest extends WebTestCase
     }
 
     /**
-     * Test Delete Roles de usuario Registrado
+     * Test Delete Role registered user
      *
      * @return none
      */
-    public function testDeleteRoleAction_borrar_rol()
+    public function testDeleteRoleAction_delete_rol()
     {
         $this->client->request('DELETE', '/api/users/admin/roles/ROL_UNO');
 
@@ -160,11 +160,11 @@ class UserRoleRestControllerTest extends WebTestCase
     }
 
     /**
-     * Test Delete Roles de rol no existente
+     * Test Delete Role nonexistant role
      *
      * @return none
      */
-    public function testDeleteRoleAction_id_inexistente()
+    public function testDeleteRoleAction_nonexitant()
     {
         $this->client->request('DELETE', '/api/users/admin/roles/ROLE_NOEXISTENTE');
 
@@ -173,11 +173,11 @@ class UserRoleRestControllerTest extends WebTestCase
     }
 
     /**
-     * Test Delete Roles de usuario no existente
+     * Test Delete Roles nonexistant user
      *
      * @return none
      */
-    public function testDeleteRoleAction_user_inexistente()
+    public function testDeleteRoleAction_nonexistan_user()
     {
         $this->client->request('DELETE', '/api/users/noexistenteuser/roles/ROL_DEVELOPER');
 
