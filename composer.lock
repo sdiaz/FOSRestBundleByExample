@@ -62,8 +62,8 @@
         {
             "package": "friendsofsymfony/user-bundle",
             "version": "dev-master",
-            "source-reference": "73d48c442b1cccd90fbce4e555ac8f580f82d974",
-            "commit-date": "1342293032"
+            "source-reference": "080bb9c1a15bcd52166796d4254f24df74b7b796",
+            "commit-date": "1342480671"
         },
         {
             "package": "gedmo/doctrine-extensions",
@@ -104,8 +104,8 @@
         {
             "package": "jms/serializer-bundle",
             "version": "dev-master",
-            "source-reference": "6df19222b597ab6f44c67dde4499766a5ca1fb99",
-            "commit-date": "1341570103"
+            "source-reference": "6bd1105030c7cc12fbd8ac64cb3a926777806045",
+            "commit-date": "1342557364"
         },
         {
             "package": "knplabs/knp-markdown-bundle",
@@ -222,8 +222,8 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "151b79a6ce3f459e2fa8815cd9f2786eef750993",
-            "commit-date": "1342376835"
+            "source-reference": "242a388ea44b8453de2c403fe9e9b74c01ee2112",
+            "commit-date": "1342559161"
         },
         {
             "package": "twig/extensions",
