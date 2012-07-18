@@ -29,6 +29,7 @@ use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
  *
  * @Prefix("/login_api")
  * @NamePrefix("byexample_demo_securityrest_")
+ * @author Santiago Diaz <santiago.diaz@me.com>
  */
 class SecurityController extends Controller
 {

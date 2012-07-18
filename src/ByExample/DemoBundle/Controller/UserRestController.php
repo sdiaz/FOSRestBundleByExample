@@ -12,34 +12,27 @@
 
 namespace ByExample\DemoBundle\Controller;
 
-use BDK\Core\UserBundle\Entity\User;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;                  // @ApiDoc(resource=true, description="Filter",filters={{"name"="a-filter", "dataType"="string", "pattern"="(foo|bar) ASC|DESC"}})
-use FOS\RestBundle\Controller\Annotations\QueryParam,       // Parameters in GET data @QueryParam(name="name", requirements="\d+", default="1", description="Page of the overview.")
-    FOS\RestBundle\Controller\Annotations\RequestParam,     // Parameters in POST data @RequestParam(name="firstname", requirements="[a-z]+", description="Firstname.") Strict -> returns 400
-    FOS\RestBundle\Controller\Annotations\Prefix,           // Prefix Route annotation class @Prefix("/api")
-    FOS\RestBundle\Controller\Annotations\NamePrefix,       // NamePrefix Route annotation class @NamePrefix("bdk_core_user_userrest_")
-    FOS\RestBundle\Controller\Annotations\View,             // If used, the template variable name used to render templating formats can be configured (default 'data'):
-    FOS\RestBundle\Request\ParamFetcher,                    // Helper to validate parameters of the active request
-    FOS\RestBundle\View\RouteRedirectView,                  // Route based redirect implementation
-    FOS\RestBundle\View\View AS FOSView;                    // Default View implementation.
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\HttpFoundation\Request,
-    Symfony\Component\Validator\ConstraintViolation;
+use FOS\RestBundle\Controller\Annotations\NamePrefix;       // NamePrefix Route annotation class @NamePrefix("bdk_core_user_userrest_")
+use FOS\RestBundle\Controller\Annotations\View;             // If used, the template variable name used to render templating formats can be configured (default 'data'):
+use FOS\RestBundle\View\RouteRedirectView;                  // Route based redirect implementation
+use FOS\RestBundle\View\View AS FOSView;                    // Default View implementation.
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\ConstraintViolation;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
- * Controller that provides Restful sercies over the resource
- * Users.
+ * Controller that provides Restful sercies over the resource Users.
  *
  * @NamePrefix("byexample_demo_userrest_")
- * @author  Santiago Diaz <santiago.diaz@me.com>
- * @version Release: 0.1
+ * @author Santiago Diaz <santiago.diaz@me.com>
  */
 class UserRestController extends Controller
 {
 
     /**
-     * Returns user list.
+     * Returns the user list.
      *
      * @return FOSView
      * @Secure(roles="ROLE_USER")
@@ -85,14 +78,7 @@ class UserRestController extends Controller
      *
      * @return FOSView
      * @Secure(roles="ROLE_USER")
-     * @ApiDoc(
-     * filters={
-     *      {"name"="username", "dataType"="string"},
-     *      {"name"="email", "dataType"="string"},
-     *      {"name"="plainPassword", "dataType"="string"},
-     *      {"name"="role", "dataType"="string"}
-     *  }
-     * )
+     * @ApiDoc()
      */
     public function postUsersAction()
     {
@@ -100,23 +86,20 @@ class UserRestController extends Controller
         $userManager = $this->container->get('fos_user.user_manager');
 
         $user = $userManager->createUser();
-
-        //var_dump($request->request);
-
         $user->setUsername($request->get('username'));
         $user->setEmail($request->get('email'));
         $user->setPlainPassword($request->get('plainPassword'));
         $user->addRole($request->get('role'));
 
         $validator = $this->get('validator');
-        //UTILIZAR GRUPO DE VALIDACION 'Registration' DEL FOSUserBund
+        //UTILIZAR GRUPO DE VALIDACION 'Registration' DEL FOSUserBundle
         $errors = $validator->validate($user, array('Registration'));
         if (count($errors) == 0) {
             $userManager->updateUser($user);
             $param = array("slug" => $user->getUsername());
             $view = RouteRedirectView::create("byexample_demo_userrest_get_user", $param);
         } else {
-            $view = $this->obtener_errors_view($errors);
+            $view = $this->get_errors_view($errors);
         }
         return $view;
     }
@@ -127,14 +110,8 @@ class UserRestController extends Controller
      * @param string $slug Username or Email
      *
      * @return FOSView
-     * @Secure(roles="IS_AUTHENTICATED_ANONYMOUSLY")
-     * @ApiDoc(
-     * filters={
-     *      {"name"="username", "dataType"="string"},
-     *      {"name"="email", "dataType"="string"},
-     *      {"name"="plainPassword", "dataType"="string"}
-     *  }
-     * )
+     * @Secure(roles="ROLE_USER")
+     * @ApiDoc()
      */
     public function putUserAction($slug)
     {
@@ -160,13 +137,12 @@ class UserRestController extends Controller
 
         $validator = $this->get('validator');
         $errors = $validator->validate($user, array('Registration'));
-
         if (count($errors) == 0) {
             $userManager->updateUser($user);
             $view = FOSView::create();
             $view->setStatusCode(204);
         } else {
-            $view = $this->obtener_errors_view($errors);
+            $view = $this->get_errors_view($errors);
         }
         return $view;
     }
@@ -177,7 +153,7 @@ class UserRestController extends Controller
      * @param string $slug Username or Email
      *
      * @return FOSView
-     * @Secure(roles="ROLE_DEVELOPER")
+     * @Secure(roles="ROLE_USER")
      * @ApiDoc()
      */
     public function deleteUserAction($slug)
@@ -200,9 +176,8 @@ class UserRestController extends Controller
      * @param ConstraintViolationList $errors Validator error list
      *
      * @return FOSView
-     *
      */
-    private function obtener_errors_view($errors)
+    private function get_errors_view($errors)
     {
         $msgs = array();
         $it = $errors->getIterator();
