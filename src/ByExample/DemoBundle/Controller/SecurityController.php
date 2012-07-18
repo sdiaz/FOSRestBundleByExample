@@ -14,30 +14,21 @@ namespace ByExample\DemoBundle\Controller;
 
 use ByExample\DemoBundle\Entity\User;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use FOS\RestBundle\Controller\Annotations\QueryParam,
-    FOS\RestBundle\Controller\Annotations\RequestParam,
-    FOS\RestBundle\Controller\Annotations\Prefix,
-    FOS\RestBundle\Controller\Annotations\NamePrefix,
-    FOS\RestBundle\Controller\Annotations\View,
-    FOS\RestBundle\Request\ParamFetcher,
-    FOS\RestBundle\View\RouteRedirectView,
-    FOS\RestBundle\View\View AS FOSView;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\HttpFoundation\Request,
-    Symfony\Component\Validator\ConstraintViolation;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException,
-    Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken,
-    Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use FOS\RestBundle\Controller\Annotations\Prefix;
+use FOS\RestBundle\Controller\Annotations\NamePrefix;
+use FOS\RestBundle\View\RouteRedirectView;
+use FOS\RestBundle\View\View AS FOSView;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 
 /**
  * Controller that provides Restfuls security functions.
  *
  * @Prefix("/login_api")
  * @NamePrefix("byexample_demo_securityrest_")
- * @author  Santiago Diaz <santiago.diaz@me.com>
- * @version Release: 0.1
  */
 class SecurityController extends Controller
 {
@@ -88,7 +79,7 @@ class SecurityController extends Controller
     }
 
   /**
-     * Devuelve un estado logout
+     * Logout from WSSE
      *
      * @return FOSView
      * @ApiDoc()
@@ -100,7 +91,7 @@ class SecurityController extends Controller
         $token = new AnonymousToken(null, new User());
         $security->setToken($token);
         $this->get('session')->invalidate();
-        $view->setStatusCode(200)->setData('Logout con éxito');
+        $view->setStatusCode(200)->setData('Logout successful');
         return $view;
     }
 
