@@ -62,8 +62,8 @@
         {
             "package": "friendsofsymfony/user-bundle",
             "version": "dev-master",
-            "source-reference": "080bb9c1a15bcd52166796d4254f24df74b7b796",
-            "commit-date": "1342480671"
+            "source-reference": "341967051bf08776517deecbe01ae8ce2f5ec9fc",
+            "commit-date": "1342615978"
         },
         {
             "package": "gedmo/doctrine-extensions",
@@ -144,8 +144,8 @@
         {
             "package": "nelmio/api-doc-bundle",
             "version": "dev-master",
-            "source-reference": "f8ab93a1679dce2320836c60da032ae89533129f",
-            "commit-date": "1342267932"
+            "source-reference": "8f3327b3769fce8e55f43115a4fd9ecfb99e45cc",
+            "commit-date": "1342623022"
         },
         {
             "package": "sensio/buzz-bundle",
@@ -222,8 +222,8 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "242a388ea44b8453de2c403fe9e9b74c01ee2112",
-            "commit-date": "1342559161"
+            "source-reference": "f53c4ba1e53f7a36fc24f2bfb7ce78723c0b6569",
+            "commit-date": "1342634181"
         },
         {
             "package": "twig/extensions",
@@ -240,8 +240,8 @@
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "d45664045194ef62573c153c424508527105041e",
-            "commit-date": "1342424564"
+            "source-reference": "7c3b987742ed8512ba70712e0ff8862c52eebbc9",
+            "commit-date": "1342675769"
         }
     ],
     "packages-dev": null,
