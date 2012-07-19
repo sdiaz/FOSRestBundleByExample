@@ -53,6 +53,7 @@ As headers you will need to use for rest calls (update the X-WSSE by the one you
 
 Just run phpunit from console:
 
+    app/Resources/bin/validate.sh
     phpunit -c app
 
 # Useful docs #
