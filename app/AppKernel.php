@@ -24,7 +24,6 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
-            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Sensio\Bundle\BuzzBundle\SensioBuzzBundle(),
             new Mopa\Bundle\WSSEAuthenticationBundle\MopaWSSEAuthenticationBundle(),
