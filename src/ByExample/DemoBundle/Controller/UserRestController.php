@@ -20,6 +20,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\ConstraintViolation;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use FOS\RestBundle\Request\ParamFetcher;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
+use FOS\RestBundle\Controller\Annotations\RequestParam;
 
 /**
  * Controller that provides Restful sercies over the resource Users.
@@ -73,22 +76,33 @@ class UserRestController extends Controller
     }
 
     /**
-     * Creates a new user entry.
+     * Creates a new User entity.
+     * Using param_fetcher_listener: force
+     *
+     * @param string $username username
+     * @param string $email    email
+     * @param string $password password
+     * @param string $role     role
+     *
+     * @RequestParam(name="username", requirements="", description="Username.")
+     * @RequestParam(name="email", requirements="", description="Email.")
+     * @RequestParam(name="password", requirements="", description="Plain Password.")
+     * @RequestParam(name="role", requirements="", description="Role.")
      *
      * @return FOSView
      * @Secure(roles="ROLE_USER")
      * @ApiDoc()
      */
-    public function postUsersAction()
+    public function postUsersAction(ParamFetcher $paramFetcher)
     {
         $request = $this->getRequest();
         $userManager = $this->container->get('fos_user.user_manager');
 
         $user = $userManager->createUser();
-        $user->setUsername($request->get('username'));
-        $user->setEmail($request->get('email'));
-        $user->setPlainPassword($request->get('plainPassword'));
-        $user->addRole($request->get('role'));
+        $user->setUsername($username);
+        $user->setEmail($email);
+        $user->setPlainPassword($password);
+        $user->addRole($role);
 
         $validator = $this->get('validator');
         //UTILIZAR GRUPO DE VALIDACION 'Registration' DEL FOSUserBundle
