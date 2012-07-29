@@ -112,7 +112,8 @@ fos_rest:
     body_listener:
         decoders:
             json: fos_rest.decoder.json
-    param_fetcher_listener: true
+    param_fetcher_listener: force
+    allowed_methods_listener: true
 
 mopa_wsse_authentication:
     provider_class: Mopa\Bundle\WSSEAuthenticationBundle\Security\Authentication\Provider\WsseAuthenticationProvider
