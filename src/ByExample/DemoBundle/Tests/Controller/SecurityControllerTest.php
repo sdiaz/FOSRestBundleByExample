@@ -81,7 +81,7 @@ class SecurityControllerTest extends WebTestCase
             'HTTP_Content-Type' => 'application/x-www-form-urlencoded',
         );
 
-        $client->request('POST', '/login_api/login', $params, array(), $header);
+        $client->request('POST', '/security/token/create', $params, array(), $header);
         $content = $client->getResponse()->getContent();
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
@@ -100,28 +100,8 @@ class SecurityControllerTest extends WebTestCase
             'HTTP_Content-Type' => 'application/x-www-form-urlencoded',
         );
 
-        $client->request('POST', '/login_api/login', $params, array(), $header);
+        $client->request('POST', '/security/token/create', $params, array(), $header);
         $content = $client->getResponse()->getContent();
-        $this->assertEquals(500, $client->getResponse()->getStatusCode());
-    }
-
-    /**
-     * Test login, invalid password.
-     *
-     * @return none
-     */
-    public function testPostLoginAction_invalid_password()
-    {
-        $client = static::createClient();
-        $params = array('_username' => 'admin', '_password' => 'wrongpassword');
-        $header = array(
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_Content-Type' => 'application/x-www-form-urlencoded',
-        );
-        $client->request('POST', '/login_api/login', $params, array(), $header);
-        $content = $client->getResponse()->getContent();
-
-        // Assert 500 password not valid
         $this->assertEquals(500, $client->getResponse()->getStatusCode());
     }
 
@@ -132,7 +112,7 @@ class SecurityControllerTest extends WebTestCase
      */
     public function testLogout()
     {
-        $this->client->request('GET', '/login_api/logout');
+        $this->client->request('GET', '/security/token/destroy');
         $content = $this->client->getResponse()->getContent();
         $contenidoDecodificado = json_decode($content, false);
 
