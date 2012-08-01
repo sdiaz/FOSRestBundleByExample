@@ -79,15 +79,12 @@ class UserRestController extends Controller
      * Creates a new User entity.
      * Using param_fetcher_listener: force
      *
-     * @param string $username username
-     * @param string $email    email
-     * @param string $password password
-     * @param string $role     role
+     * @param ParamFetcher $paramFetcher Paramfetcher
      *
-     * @RequestParam(name="username", requirements="", description="Username.")
-     * @RequestParam(name="email", requirements="", description="Email.")
-     * @RequestParam(name="password", requirements="", description="Plain Password.")
-     * @RequestParam(name="role", requirements="", description="Role.")
+     * @RequestParam(name="username", requirements="\d+", default="", description="Username.")
+     * @RequestParam(name="email", requirements="\d+", default="", description="Email.")
+     * @RequestParam(name="plainPassword", requirements="\d+", default="", description="Plain Password.")
+     * @RequestParam(name="role", requirements="\d+", default="", description="Role.")
      *
      * @return FOSView
      * @Secure(roles="ROLE_USER")
@@ -99,10 +96,10 @@ class UserRestController extends Controller
         $userManager = $this->container->get('fos_user.user_manager');
 
         $user = $userManager->createUser();
-        $user->setUsername($username);
-        $user->setEmail($email);
-        $user->setPlainPassword($password);
-        $user->addRole($role);
+        $user->setUsername($request->get('username'));
+        $user->setEmail($request->get('email'));
+        $user->setPlainPassword($request->get('plainPassword'));
+        $user->addRole($request->get('role'));
 
         $validator = $this->get('validator');
         //UTILIZAR GRUPO DE VALIDACION 'Registration' DEL FOSUserBundle
