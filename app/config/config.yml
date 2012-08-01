@@ -112,7 +112,7 @@ fos_rest:
     body_listener:
         decoders:
             json: fos_rest.decoder.json
-    param_fetcher_listener: force
+    param_fetcher_listener: true
     allowed_methods_listener: true
 
 mopa_wsse_authentication:

@@ -27,7 +27,7 @@ use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 /**
  * Controller that provides Restfuls security functions.
  *
- * @Prefix("/login_api")
+ * @Prefix("/security")
  * @NamePrefix("byexample_demo_securityrest_")
  * @author Santiago Diaz <santiago.diaz@me.com>
  */
@@ -35,13 +35,13 @@ class SecurityController extends Controller
 {
 
     /**
-     * WSSE authentication
+     * WSSE Token generation
      *
      * @return FOSView
      * @throws AccessDeniedException
      * @ApiDoc()
      */
-    public function postLoginAction()
+    public function postTokenCreateAction()
     {
 
         $view = FOSView::create();
@@ -59,32 +59,26 @@ class SecurityController extends Controller
         if (!$user instanceof User) {
             throw new AccessDeniedException("Wrong user");
         }
-        if (!$this->checkUserPassword($user, $password)) {
-            throw new AccessDeniedException("Wrong password");
-        }
 
         $created = date('c');
         $nonce = substr(md5(uniqid('nonce_', true)), 0, 16);
         $nonceHigh = base64_encode($nonce);
         $passwordDigest = base64_encode(sha1($nonce . $created . $user->getPassword(), true));
         $header = "UsernameToken Username=\"{$username}\", PasswordDigest=\"{$passwordDigest}\", Nonce=\"{$nonceHigh}\", Created=\"{$created}\"";
-        $this->loginUser($user);
-
         $view->setHeader("Authorization", 'WSSE profile="UsernameToken"');
         $view->setHeader("X-WSSE", "UsernameToken Username=\"{$username}\", PasswordDigest=\"{$passwordDigest}\", Nonce=\"{$nonceHigh}\", Created=\"{$created}\"");
-
         $data = array('WSSE' => $header);
         $view->setStatusCode(200)->setData($data);
         return $view;
     }
 
   /**
-     * Logout from WSSE
+     * WSSE Token Remove
      *
      * @return FOSView
      * @ApiDoc()
      */
-    public function getLogoutAction()
+    public function getTokenDestroyAction()
     {
         $view = FOSView::create();
         $security = $this->get('security.context');
@@ -94,37 +88,4 @@ class SecurityController extends Controller
         $view->setStatusCode(200)->setData('Logout successful');
         return $view;
     }
-
-    /**
-     * Login user
-     *
-     * @param User $user user
-     *
-     * @return void
-     */
-    protected function loginUser(User $user)
-    {
-        $security = $this->get('security.context');
-        $providerKey = $this->container->getParameter('fos_user.firewall_name');
-        $roles = $user->getRoles();
-        $token = new UsernamePasswordToken($user, null, $providerKey, $roles);
-        $security->setToken($token);
-    }
-
-    /**
-     * Check user Password
-     *
-     * @param User   $user     user
-     * @param string $password password
-     *
-     * @return boolean
-     */
-    protected function checkUserPassword(User $user, $password)
-    {
-        $factory = $this->get('security.encoder_factory');
-        $encoder = $factory->getEncoder($user);
-        return $encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt());
-    }
-
-
 }
