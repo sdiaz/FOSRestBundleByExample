@@ -15,7 +15,7 @@ Just clone the project and execute:
 
 We use *--prefer-source* to use git instead of zipballs. After that we will setup the project by executing the following script:
 
-    src/ByExample/DemoBundle/Resources/bin/validate.sh
+    app/Resources/bin/validate.sh
 
 Remember to set the database password properly in *parameters.yml*.
 
