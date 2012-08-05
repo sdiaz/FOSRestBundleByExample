@@ -80,7 +80,7 @@ class UserRoleRestController extends Controller
     }
 
     /**
-     * Delete the rol indicated for an user by username/email.
+     * Delete the role indicated for an user by username/email.
      *
      * @param string $slug Username or Email
      * @param string $id   Role name
