@@ -8,7 +8,7 @@ php:
 before_script:
   - curl -s http://getcomposer.org/installer | php
   - COMPOSER_ROOT_VERSION=dev-master php composer.phar --dev install
-  - app/Resources/bin/validate.sh
+  - app/Resources/bin/travis.sh
 
 script: phpunit -c app/
 
