@@ -25,7 +25,7 @@ Now you will able to list the resources at http://localhost/app_dev.php
 
 Nelmio API Doc provides you with a *sandbox* that you can use to check the controllers. We recommend to use Chrome and the [Dev HTTP Client extension](https://chrome.google.com/webstore/detail/aejoelaoggembcahagimdiliamlcdmfm) instead, as it let you manage different calls and bookmark them in the extension.
 
-As an example, the following screenshot show the interface while doing the WSSE login:
+As an example, the following screenshot show the interface while requesting a WSSE token with username and password parameters:
 
 ![](https://dl.dropbox.com/u/3972728/github/devhttpclient01.png)
 
