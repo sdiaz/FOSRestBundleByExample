@@ -81,7 +81,7 @@ class SecurityControllerTest extends WebTestCase
             'HTTP_Content-Type' => 'application/x-www-form-urlencoded',
         );
 
-        $client->request('POST', '/security/token/create', $params, array(), $header);
+        $client->request('POST', '/security/tokens/creates', $params, array(), $header);
         $content = $client->getResponse()->getContent();
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
@@ -100,7 +100,7 @@ class SecurityControllerTest extends WebTestCase
             'HTTP_Content-Type' => 'application/x-www-form-urlencoded',
         );
 
-        $client->request('POST', '/security/token/create', $params, array(), $header);
+        $client->request('POST', '/security/tokens/creates', $params, array(), $header);
         $content = $client->getResponse()->getContent();
         $this->assertEquals(500, $client->getResponse()->getStatusCode());
     }
@@ -112,7 +112,7 @@ class SecurityControllerTest extends WebTestCase
      */
     public function testLogout()
     {
-        $this->client->request('GET', '/security/token/destroy');
+        $this->client->request('GET', '/security/tokens/destroys');
         $content = $this->client->getResponse()->getContent();
         $contenidoDecodificado = json_decode($content, false);
 
