@@ -2,52 +2,50 @@
     "name": "symfony/framework-standard-edition",
     "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
-        "psr-0": {
-            "": "src/"
-        }
+        "psr-0": { "": "src/" }
     },
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.1.*",
-        "doctrine/orm": "2.2.*",
-        "doctrine/doctrine-bundle": "dev-master",
-        "twig/extensions": "dev-master",
-        "symfony/assetic-bundle": "dev-master",
-        "symfony/swiftmailer-bundle": "dev-master",
-        "symfony/monolog-bundle": "dev-master",
-        "sensio/distribution-bundle": "dev-master",
-        "sensio/framework-extra-bundle": "dev-master",
-        "sensio/generator-bundle": "dev-master",
-        "jms/security-extra-bundle": "1.1.*",
-        "jms/di-extra-bundle": "1.0.*",
+        "doctrine/orm": ">=2.2.3,<2.4-dev",
+        "doctrine/doctrine-bundle": "1.0.*",
+        "twig/extensions": "1.0.*@dev",
+        "symfony/assetic-bundle": "2.1.*",
+        "symfony/swiftmailer-bundle": "2.1.*",
+        "symfony/monolog-bundle": "2.1.*",
+        "sensio/distribution-bundle": "2.1.*",
+        "sensio/framework-extra-bundle": "2.1.*",
+        "sensio/generator-bundle": "2.1.*",
+        "jms/security-extra-bundle": "1.2.*",
+        "jms/di-extra-bundle": "1.1.*",
+        "kriswallsmith/assetic": "1.1.*@dev",
 
-        "gedmo/doctrine-extensions":"2.3.0",
-        "stof/doctrine-extensions-bundle":"dev-master",
+        "stof/doctrine-extensions-bundle":"1.1.x-dev",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
-        "jms/serializer-bundle": "dev-master",
+        "doctrine/doctrine-migrations-bundle": "dev-master",
+        "doctrine/common": "2.3.0",
+
+        "jms/serializer-bundle": "0.9.0",
         "jms/debugging-bundle" : "dev-master",
-        "friendsofsymfony/user-bundle": "dev-master",
-        "friendsofsymfony/rest-bundle": "dev-master",
-        "nelmio/api-doc-bundle": "dev-master",
+        "friendsofsymfony/user-bundle": "2.0.x-dev",
+        "friendsofsymfony/rest-bundle": "0.10",
+        "nelmio/api-doc-bundle": "2.0.x-dev",
         "sensio/buzz-bundle": "dev-master",
         "mopa/wsse-authentication-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
-        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
-        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ]
-    },
-    "config": {
-        "bin-dir": "bin"
     },
     "minimum-stability": "dev",
     "extra": {
