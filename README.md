@@ -16,7 +16,7 @@ Documentation
 The bulk of the documentation will be stored in the `app/Resources/doc/index.md`
 file in this bundle:
 
-[Read the Documentation for master](FOSRestBundleByExample/blob/master/app/Resources/doc/index.md)
+[Read the Documentation for master](app/Resources/doc/index.md)
 
 After installation you will find in http://localhost/app_dev.php the Nelmio Api Doc with the resources available.
 
