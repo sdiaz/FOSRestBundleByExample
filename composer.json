@@ -6,8 +6,6 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "ext-intl": "*",
-        "ext-apc": "*",
         "symfony/symfony": "2.3.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle": "1.2.*",
