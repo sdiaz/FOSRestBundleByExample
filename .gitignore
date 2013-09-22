@@ -1,25 +1,121 @@
-# Symfony Rules
-app/bootstrap.php.cache
-app/cache/*
-app/logs/*
-app/config/parameters.yml
-web/bundles/
-vendor
-composer.phar
+############
+# SYMFONY2 #
+############
 
-# Testing QA
-build/*
+web/uploads/*
+web/bundles/*
+*/logs/*
+*/cache/*
+vendor/*
+
+### Bootstrap files ###
+app/bootstrap*
+cache.properties
+
+### Phar files ###
+composer.phar
+php-cs-fixer.phar
+
+### Testing and QA files ###
+build*/*
 .sonar/*
 
-# MacOSX
-.DS_Store
+#####################
+# OPERATING SYSTEMS #
+#####################
+
+### Windows ###
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+### Linux ###
+.*
+!.gitignore
 *~
 
-# Netbeans
-nbproject/*
+### OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+*~
 
-# Eclipse
+########
+# IDES #
+########
+
+### vim ###
+.*.sw[a-z]
+*.un~
+Session.vim
+.netrwhist
+
+### Eclipse ###
+*.pydevproject
 .project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+.externalToolBuilders/
+*.launch
 .buildpath
-.settings/*
-/web/info.php
+
+### InteliJ ###
+.idea/
+
+### Textmate ###
+*.tmproj
+*.tmproject
+tmtags
+
+### Sublimetext ###
+/*.sublime-project
+*.sublime-workspace
+
+### Netbeans ###
+nbproject/*
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+### Aptana ###
+.project
+.vagrant/
+
+###########
+# HYBREED #
+###########
+
+### Cordova ###
+.cordova/*
+merges/*
+platforms/*
+build/*
+www/*
+
+### NPM ###
+/node_modules/*
+
+
+### Gradle ###
+.gradle/*
+
+### Blackberry ###
+/device/*
+/simulator/*
