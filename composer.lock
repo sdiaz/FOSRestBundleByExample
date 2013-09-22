@@ -2775,8 +2775,6 @@
     },
     "platform": {
         "php": ">=5.3.3",
-        "ext-intl": "*",
-        "ext-apc": "*"
     },
     "platform-dev": [
 
