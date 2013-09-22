@@ -1,12 +1,11 @@
 FOSRestBundleByExample
 ======================
 
-FOSRestBundle example project with Symfony 2.1 standard distribution.
+FOSRestBundle example project with Symfony 2.3 standard distribution.
 
 **Note:** Work In Progress
 
 **Caution:** This example project is developed in sync with [symfony's repository](https://github.com/symfony/symfony).
-There is currently no release for Symfony 2.0.x
 
 [![Build Status](https://secure.travis-ci.org/sdiaz/FOSRestBundleByExample.png?branch=master)](http://travis-ci.org/sdiaz/FOSRestBundleByExample)
 
