@@ -1,7 +1,7 @@
 ############
 # SYMFONY2 #
 ############
-
+app/config/parameters.yml
 web/uploads/*
 web/bundles/*
 */logs/*
