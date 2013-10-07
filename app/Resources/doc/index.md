@@ -11,7 +11,7 @@ This example project is based on Symfony Standard distribution. The project aims
 
 Just clone the project and execute:
 
-    curl -s http://getcomposer.org/installer | php composer.phar install --prefer-source
+    curl -sS http://getcomposer.org/installer | php && php composer.phar install --prefer-source
 
 We use *--prefer-source* to use git instead of zipballs. After that we will setup the project by executing the following script:
 
