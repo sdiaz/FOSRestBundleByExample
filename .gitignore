@@ -1,121 +1,24 @@
-############
-# SYMFONY2 #
-############
-app/config/parameters.yml
-web/uploads/*
-web/bundles/*
-*/logs/*
-*/cache/*
-vendor/*
+/web/bundles/
+/app/config/parameters.yml
+/var/bootstrap.php.cache
+/var/cache/*
+/var/logs/*
+!var/cache/.gitkeep
+!var/logs/.gitkeep
+/vendor/
+/bin/*
+!bin/console
+!bin/symfony_requirements
 
-### Bootstrap files ###
-app/bootstrap*
-cache.properties
+/composer.phar
 
-### Phar files ###
-composer.phar
-php-cs-fixer.phar
+/nbproject
+/.idea
 
-### Testing and QA files ###
-build*/*
-.sonar/*
-
-#####################
-# OPERATING SYSTEMS #
-#####################
-
-### Windows ###
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-
-### Linux ###
-.*
-!.gitignore
-*~
-
-### OSX ###
-.DS_Store
-.AppleDouble
-.LSOverride
-Icon
-._*
-.Spotlight-V100
-.Trashes
-*~
-
-########
-# IDES #
-########
-
-### vim ###
-.*.sw[a-z]
-*.un~
-Session.vim
-.netrwhist
-
-### Eclipse ###
-*.pydevproject
-.project
-.metadata
-bin/**
-tmp/**
-tmp/**/*
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.classpath
-.settings/
-.loadpath
-.externalToolBuilders/
-*.launch
-.buildpath
-
-### InteliJ ###
-.idea/
-
-### Textmate ###
-*.tmproj
-*.tmproject
-tmtags
-
-### Sublimetext ###
-/*.sublime-project
-*.sublime-workspace
-
-### Netbeans ###
-nbproject/*
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
-
-### Aptana ###
-.project
-.vagrant/
-
-###########
-# HYBREED #
-###########
-
-### Cordova ###
-.cordova/*
-merges/*
-platforms/*
-build/*
-www/*
-
-### NPM ###
-/node_modules/*
-
-
-### Gradle ###
-.gradle/*
-
-### Blackberry ###
-/device/*
-/simulator/*
+/web/attachments
+/build/api
+/build/coverage
+/build/logs
+/build/pdepend
+/build/phpdox
+/build/doc
