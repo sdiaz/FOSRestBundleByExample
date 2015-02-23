@@ -32,7 +32,7 @@ class TokenCommandTest extends KernelTestCase
         $commandTester = new CommandTester($command);
         $commandTester->execute(
             array(
-                'username' => 'superadmin',
+                'username' => 'admin',
                 'password' => 'password',
             )
         );
