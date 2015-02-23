@@ -1,0 +1,25 @@
+# JMS\AopBundle Configuration
+jms_aop:
+    cache_dir: %kernel.cache_dir%/jms_aop
+
+# JMS\SecurityExtraBundle Configuration
+jms_security_extra:
+    secure_all_services: false
+    enable_iddqd_attribute: false
+    expressions: true
+
+# JMS\DiExtraBundle Configuration
+jms_di_extra:
+    locations:
+        all_bundles: false
+        bundles: [AppBundle]
+        directories: ["%kernel.root_dir%/../src"]
+
+# Configuration
+jms_serializer:
+    metadata:
+        cache: file
+        debug: "%kernel.debug%"
+        file_cache:
+            dir: "%kernel.cache_dir%/serializer"
+        auto_detection: true

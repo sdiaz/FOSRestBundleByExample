@@ -1,0 +1,7 @@
+fos_user:
+    db_driver: orm
+    firewall_name: admin
+    user_class: AppBundle\Entity\User
+    from_email:
+        address:        noreply@noexist.com
+        sender_name:    Mail Service
