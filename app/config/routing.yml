@@ -5,7 +5,7 @@ restful_services:
 
 nelmio_apidoc:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /apidoc
+    prefix:   /
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

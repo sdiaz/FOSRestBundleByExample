@@ -10,12 +10,13 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
+
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
         wsse_secured:
-            pattern:      ^/api/v1/users/(.*)/(devices|mailboxes)(.*)
+            pattern:      ^/api
             context:      user
             stateless:    true
             wsse:
