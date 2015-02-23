@@ -13,6 +13,10 @@ Just clone the project and execute:
 
     curl -sS http://getcomposer.org/installer | php && php composer.phar install --prefer-source
 
+If you have a composer, execute:
+
+    composer install
+
 We use *--prefer-source* to use git instead of zipballs. After that we will setup the project by executing the following script:
 
     app/Resources/bin/validate.sh
