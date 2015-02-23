@@ -1,0 +1,16 @@
+service_token:
+    type: rest
+    prefix: /v1
+    resource: AppBundle\Controller\TokenRestController
+    name_prefix:  api_1_ # naming collision
+
+service_user:
+    type: rest
+    prefix: /v1
+    resource: AppBundle\Controller\UserRestController
+    name_prefix:  api_1_ # naming collision
+
+service_user_role:
+    type: rest
+    parent: service_user
+    resource: AppBundle\Controller\UserRoleRestController

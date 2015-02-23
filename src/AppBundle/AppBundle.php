@@ -10,14 +10,11 @@
  *
  */
 
-namespace ByExample\DemoBundle;
+namespace AppBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-/**
- * ByExample Demo Bundle Class.
- */
-class ByExampleDemoBundle extends Bundle
+class AppBundle extends Bundle
 {
 
 }
