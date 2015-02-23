@@ -1,128 +1,118 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: services.yml }
+
+    # FriendOfSymfony Bundles
+    - { resource: fos/fos_rest.yml }
+    - { resource: fos/fos_user.yml }
+
+    # Others
+    - { resource: jms/jms.yml }
 
 framework:
     #esi:             ~
-    translator:      { fallback: %locale% }
-    secret:          %secret%
+    translator:      { fallback: "%locale%" }
+    secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
-        strict_requirements: %kernel.debug%
+        strict_requirements: ~
     form:            true
     csrf_protection: true
     validation:      { enable_annotations: true }
-    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
-    default_locale:  %locale%
-    session:         ~
-
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+         
 # Twig Configuration
 twig:
-    debug:            %kernel.debug%
-    strict_variables: %kernel.debug%
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
     exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
 
 # Assetic Configuration
 assetic:
-    debug:          %kernel.debug%
+    debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ByExampleDemoBundle]
+    bundles:        [AppBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
         #closure:
-        #    jar: %kernel.root_dir%/Resources/java/compiler.jar
+        #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
         #yui_css:
-        #    jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar
+        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
 
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   %database_driver%
-        host:     %database_host%
-        port:     %database_port%
-        dbname:   %database_name%
-        user:     %database_user%
-        password: %database_password%
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
         charset:  UTF8
+        mapping_types:
+            #se mapean los enums como strings
+            enum: string
 
     orm:
-        auto_generate_proxy_classes: %kernel.debug%
+        auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
         mappings:
-            translatable:
+            gedmo_translatable:
                 type: annotation
-                alias: Gedmo
                 prefix: Gedmo\Translatable\Entity
                 dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
-            loggable:
+                alias: GedmoTranslatable # this one is optional and will default to the name set for the mapping
+                is_bundle: false
+            gedmo_translator:
                 type: annotation
-                alias: Gedmo
+                prefix: Gedmo\Translator\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity"
+                alias: GedmoTranslator # this one is optional and will default to the name set for the mapping
+                is_bundle: false
+            gedmo_loggable:
+                type: annotation
                 prefix: Gedmo\Loggable\Entity
                 dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
-            tree:
+                alias: GedmoLoggable # this one is optional and will default to the name set for the mapping
+                is_bundle: false
+            gedmo_tree:
                 type: annotation
-                alias: Gedmo
                 prefix: Gedmo\Tree\Entity
                 dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
+                alias: GedmoTree # this one is optional and will default to the name set for the mapping
+                is_bundle: false
+            FOSUserBundle: ~
+            AppBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: %mailer_transport%
-    host:      %mailer_host%
-    username:  %mailer_user%
-    password:  %mailer_password%
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
     spool:     { type: memory }
 
-jms_security_extra:
-    secure_all_services: false
-    enable_iddqd_attribute: false
-    expressions: true
-
-jms_serializer:
-    metadata:
-        cache: file
-        debug: "%kernel.debug%"
-        file_cache:
-            dir: "%kernel.cache_dir%/serializer"
-        auto_detection: true
-
+# Sensio\Bundle\FrameworkExtraBundle Configuration
 sensio_framework_extra:
-    router:  { annotations: true }
-    request: { converters: true }
-    view:    { annotations: false }  # More info at https://github.com/FriendsOfSymfony/FOSRestBundle/issues/95
-    cache:   { annotations: true }
+    router:   { annotations: true }
+    request:  { converters: true, auto_convert: true }
+    view:     { annotations: false }
+    cache:    { annotations: true }
+    security: { annotations: true }
 
-jms_aop:
-    cache_dir: %kernel.cache_dir%/jms_aop
-
-fos_user:
-    db_driver: orm
-    firewall_name: wsse_secured #fos_secured
-    user_class: ByExample\DemoBundle\Entity\User
-
-fos_rest:
-    view:
-        view_response_listener: true
-        failed_validation: HTTP_BAD_REQUEST
-        default_engine: php
-        formats:
-            json: true
-            xml: true
-            rss: false
-    format_listener:
-        prefer_extension: true
-    body_listener:
-        decoders:
-            json: fos_rest.decoder.json
-    param_fetcher_listener: true
-    allowed_methods_listener: true
-
-mopa_wsse_authentication:
-    provider_class: Mopa\Bundle\WSSEAuthenticationBundle\Security\Authentication\Provider\WsseAuthenticationProvider
-    listener_class: Mopa\Bundle\WSSEAuthenticationBundle\Security\Firewall\WsseListener
-    factory_class: Mopa\Bundle\WSSEAuthenticationBundle\Security\Factory\WsseFactory
-
+#StofDoctrineExtensionsBundle Configuration
 stof_doctrine_extensions:
     default_locale: %locale%
     orm:
@@ -132,3 +122,9 @@ stof_doctrine_extensions:
             sluggable: true
             loggable: true
             tree: true
+
+# Mopa WSSE authentication configuration
+mopa_wsse_authentication:
+    provider_class: Mopa\Bundle\WSSEAuthenticationBundle\Security\Authentication\Provider\WsseAuthenticationProvider
+    listener_class: Mopa\Bundle\WSSEAuthenticationBundle\Security\Firewall\WsseListener
+    factory_class: Mopa\Bundle\WSSEAuthenticationBundle\Security\Factory\WsseFactory

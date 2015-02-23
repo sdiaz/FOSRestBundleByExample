@@ -1,38 +1,28 @@
 security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_API, ROLE_ALLOWED_TO_SWITCH]
+
     providers:
         fos_userbundle:
-            id: fos_user.user_provider.username_email
-
-    encoders:
-        FOS\UserBundle\Model\UserInterface: plaintext #sha512
+            id: fos_user.user_provider.username
 
     firewalls:
-#        fos_secured:
-#            pattern: ^/
-#            form_login:
-#                provider: fos_userbundle
-#                csrf_provider: form.csrf_provider
-#            logout:       true
-#            anonymous:    true
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
 
         wsse_secured:
-            pattern:   ^/api/.*
+            pattern:      ^/api/v1/users/(.*)/(devices|mailboxes)(.*)
+            context:      user
             stateless:    true
             wsse:
                 nonce_dir: null
-                lifetime: 300
                 provider: fos_userbundle
-            anonymous:    true
-
+                lifetime: 600
+            anonymous:    false
+            
     access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/login_api, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/, role: IS_AUTHENTICATED_ANONYMOUSLY }
-
-    role_hierarchy:
-        ROLE_WEBUSER:      ROLE_USER
-        ROLE_PROFESSIONAL: ROLE_USER
-        ROLE_EMPLOYEE:     ROLE_USER
-        ROLE_DEVELOPER:    [ROLE_WEBUSER, ROLE_PROFESSIONAL, ROLE_EMPLOYEE, ROLE_ALLOWED_TO_SWITCH]
+        - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
