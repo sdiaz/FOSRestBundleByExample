@@ -1,9 +1,9 @@
 FOSRestBundleByExample
 ======================
 
-FOSRestBundle example project with Symfony 2.3 standard distribution.
+FOSRestBundle example project with Symfony 2.6 standard distribution.
 
-**Note:** Work In Progress
+**Note:** Contributions and examples welcome.
 
 **Caution:** This example project is developed in sync with [symfony's repository](https://github.com/symfony/symfony).
 
@@ -19,11 +19,11 @@ file in this bundle:
 
 After installation you will find in http://localhost/app_dev.php the Nelmio Api Doc with the resources available.
 
-![API Example](https://dl.dropbox.com/u/3972728/github/apiexample.png)
+![API Example](app/Resources/doc/shot.png)
 
 License
 -------
 
 This bundle is under the MIT license. See the complete license in the bundle:
 
-    app/Resources/meta/LICENSE
+    LICENSE
