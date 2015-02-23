@@ -9,9 +9,9 @@ php:
 before_script:
   - curl -s http://getcomposer.org/installer | php
   - COMPOSER_ROOT_VERSION=dev-master php composer.phar --dev install
-  - app/Resources/bin/travis.sh
+  - build/travis.sh
 
-script: phpunit -c app/
+script: phpunit -c build/
 
 notifications:
-  email: "sdiaz@symfony.tv"
+  email: "santiago.diaz@me.com"
