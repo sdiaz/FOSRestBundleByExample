@@ -24,7 +24,7 @@ Nelmio API Doc provides you with a *sandbox* that you can use to check the contr
 
 As an example, the following screenshot show the interface while posting a new user:
 
-![POST User](app/Resources/doc/post_user.png)
+![POST User](post_user.png)
 
 # Testing #
 
