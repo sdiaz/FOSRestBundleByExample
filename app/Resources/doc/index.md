@@ -33,6 +33,3 @@ Just run phpunit from console:
     build/travis.sh
     phpunit -c build
 
-# Useful docs #
-
-[Installing ant dependencies](ant_deps.md)
