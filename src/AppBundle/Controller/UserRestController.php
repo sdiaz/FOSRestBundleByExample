@@ -225,6 +225,42 @@ class UserRestController extends FOSRestController
     }
 
     /**
+     * Get User Salt.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Get user salt by its username",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when the user is not found"
+     *   }
+     * )
+     *
+     * @param string $id the user username
+     *
+     * @return View
+     */
+    public function getUserSaltAction($slug)
+    {
+
+        $entity = $this->getDoctrine()->getRepository('AppBundle\Entity\User')->findOneBy(
+            array('username' => $slug)
+        );
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Data not found.');
+        }
+
+        $salt = $entity->getSalt();
+
+        $view = View::create();
+        $view->setData(array('salt' => $salt))->setStatusCode(200);
+
+        return $view;
+    }
+
+
+    /**
      * Get the validation errors
      *
      * @param ConstraintViolationList $errors Validator error list
