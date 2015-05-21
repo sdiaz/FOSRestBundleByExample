@@ -16,7 +16,7 @@ security:
             security: false
 
         wsse_secured:
-            pattern:      (.*)/(role)(.*)
+            pattern:      ^/api/v1/((?!tokens))
             context:      user
             stateless:    true
             wsse:
